@@ -9,9 +9,67 @@
 		configure as beans -->
 	<context:component-scan base-package="com.example.springdemo.service" />
 
+	<bean id="stefan" class="com.example.springdemo.domain.Person">
+		<property name="firstName" value="Stefan" />
+		<property name="yob" value="1935" />
+	</bean>
+
+	<bean id="danuta" class="com.example.springdemo.domain.Person">
+		<property name="firstName" value="Danuta" />
+		<property name="yob" value="1937" />
+	</bean>
+
+	<bean id="monika" class="com.example.springdemo.domain.Person">
+		<property name="firstName" value="Monika" />
+		<property name="yob" value="1960" />
+
+		<constructor-arg ref="stefan"/>
+		<constructor-arg ref="danuta"/>
+	</bean>
+
+	<bean id="maciek" class="com.example.springdemo.domain.Person">
+		<property name="firstName" value="Maciek" />
+		<property name="yob" value="1964" />
+	</bean>
+
+	<bean id="tomek" class="com.example.springdemo.domain.Person">
+		<property name="firstName" value="Tomek" />
+		<property name="yob" value="1990" />
+
+		<constructor-arg ref="maciek"/>
+		<constructor-arg ref="monika"/>
+	</bean>
+
 	<bean id="zosia" class="com.example.springdemo.domain.Person">
 		<property name="firstName" value="Zosia" />
 		<property name="yob" value="1987" />
+
+		<constructor-arg ref="maciek"/>
+		<constructor-arg ref="monika"/>
+	</bean>
+
+	<bean id="grandfather" class="com.example.springdemo.service.PersonManager">
+		<constructor-arg ref="stefan"/>
+	</bean>
+
+	<bean id="grandmother" class="com.example.springdemo.service.PersonManager">
+		<constructor-arg ref="danuta"/>
+	</bean>
+
+	<bean id="mother" class="com.example.springdemo.service.PersonManager">
+		<constructor-arg ref="monika"/>
+	</bean>
+
+	<bean id="father" class="com.example.springdemo.service.PersonManager">
+		<constructor-arg ref="maciek"/>
+	</bean>
+
+	<bean id="son" class="com.example.springdemo.service.PersonManager">
+		<constructor-arg ref="tomek"/>
+	</bean>
+
+	<bean id="daughter" class="com.example.springdemo.service.PersonManager">
+		<constructor-arg ref="zosia"/>
 	</bean>
 
 </beans>
